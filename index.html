@@ -463,7 +463,19 @@ document.querySelectorAll(".reveal").forEach(r=>io.observe(r));
 const Music = (() => {
   let ready=false, on=false, wantOn=true, fx, master, voiceStart, gen=0;
   /* Locución completa, en fragmentos para que Chrome no la corte */
-  const FRASES=["Bienvenidos a la Universidad Bolivariana del Ecuador.","Estudia las carreras de Ingeniería en Sistemas Inteligentes o Ingeniería en Inteligencia Artificial y Ciberseguridad.","Crea con seguridad."];
+  const FRASES=[
+    "¡Bienvenidos a la Universidad Bolivariana del Ecuador!",
+    "¡El futuro de la tecnología comienza contigo!",
+    "Te invitamos a formarte en dos carreras con gran proyección en el mundo digital:",
+    "¡Ingeniería en Sistemas Inteligentes e Ingeniería en Inteligencia Artificial y Ciberseguridad!",
+    "Aprende a desarrollar soluciones innovadoras, crear aplicaciones inteligentes,",
+    "aprovechar el poder de la inteligencia artificial y proteger la información en un mundo cada vez más conectado.",
+    "¡No te limites a utilizar la tecnología, prepárate para crearla, transformarla y protegerla!",
+    "¡Atrévete a innovar y conviértete en protagonista de la revolución tecnológica!",
+    "Universidad Bolivariana del Ecuador.",
+    "¡La universidad para todos!",
+    "¡Tu futuro comienza aquí!"
+  ];
   const CICLO_MS=80000; /* la locución empieza cada 80 segundos */
   const FEM=/elvira|helena|laura|m[oó]nica|marisol|luc[ií]a|paloma|conchita|carmen|elena|ximena|google espa[nñ]ol$|female|mujer/i;
   const MASC=/pablo|[aá]lvaro|jorge|diego|ra[uú]l|enrique|carlos|juan|antonio/i;
