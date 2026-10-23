@@ -461,12 +461,49 @@ document.querySelectorAll(".reveal").forEach(r=>io.observe(r));
 
 /* ===== Música de fondo original (generada en el navegador con Tone.js) ===== */
 const Music = (() => {
-  let ready=false, on=false, wantOn=true, fx;
+  let ready=false, on=false, wantOn=true, fx, master, voiceStart, gen=0;
+  /* Locución completa, en fragmentos para que Chrome no la corte */
+  const FRASES=["Bienvenidos a la Universidad Bolivariana del Ecuador.","Estudia las carreras de Ingeniería en Sistemas Inteligentes o Ingeniería en Inteligencia Artificial y Ciberseguridad.","Crea con seguridad."];
+  const PAUSA_MS=3000; /* silencio entre repeticiones */
+  const FEM=/elvira|helena|laura|m[oó]nica|marisol|luc[ií]a|paloma|conchita|carmen|elena|ximena|google espa[nñ]ol$|female|mujer/i;
+  const MASC=/pablo|[aá]lvaro|jorge|diego|ra[uú]l|enrique|carlos|juan|antonio/i;
+  const hasVoice="speechSynthesis" in window;
+  if(hasVoice) speechSynthesis.getVoices();
+  /* Prioriza voz femenina de España (es-ES): Elvira, Helena, Laura, Mónica, Google español… */
+  function pickVoice(){
+    const vs=speechSynthesis.getVoices();
+    const es=vs.filter(v=>/^es[-_]ES/i.test(v.lang));
+    const any=vs.filter(v=>/^es/i.test(v.lang));
+    return es.find(v=>FEM.test(v.name)&&/natural|online|neural|google/i.test(v.name))
+      || es.find(v=>FEM.test(v.name))
+      || es.find(v=>!MASC.test(v.name))
+      || any.find(v=>FEM.test(v.name))
+      || es[0] || any[0] || null;
+  }
+  function duck(db,t){ if(master) master.volume.rampTo(db,t); }
+  /* Repite la locución sin parar mientras la música esté encendida */
+  function speak(){
+    if(!on||!hasVoice) return;
+    const g=++gen;
+    speechSynthesis.cancel();
+    const v=pickVoice();
+    duck(-28,.4);
+    FRASES.forEach((t,k)=>{
+      const u=new SpeechSynthesisUtterance(t);
+      u.lang=v?v.lang:"es-ES"; if(v) u.voice=v;
+      u.rate=.95; u.pitch=1.08; u.volume=1;
+      if(k===FRASES.length-1){
+        u.onend=u.onerror=()=>{ if(g!==gen) return; duck(-15,1.2); if(on) voiceStart=setTimeout(speak,PAUSA_MS); };
+      }
+      speechSynthesis.speak(u);
+    });
+  }
+  function stopVoice(){ gen++; clearTimeout(voiceStart); if(hasVoice) speechSynthesis.cancel(); duck(-15,.3); }
   let pref=null; try{ pref=localStorage.getItem("ube-music"); }catch(_){}
   if(pref==="off") wantOn=false;
   function build(){
     if(typeof Tone==="undefined") return false;
-    const master=new Tone.Volume(-15).toDestination();
+    master=new Tone.Volume(-15).toDestination();
     const rev=new Tone.Reverb({decay:4,wet:.35}).connect(master);
     const delay=new Tone.FeedbackDelay("8n.",.3).connect(rev);
     const pad=new Tone.PolySynth(Tone.Synth,{oscillator:{type:"fatsawtooth",count:3,spread:30},envelope:{attack:1.2,release:2.5}}).connect(new Tone.Filter(900,"lowpass").connect(rev));
@@ -490,9 +527,11 @@ const Music = (() => {
     return true;
   }
   async function start(){
-    try{ await Tone.start(); if(!ready){ ready=build(); if(!ready) return; } Tone.Transport.start(); on=true; ui(); }catch(_){}
+    try{ await Tone.start(); if(!ready){ ready=build(); if(!ready) return; } Tone.Transport.start(); on=true; ui();
+      stopVoice(); voiceStart=setTimeout(speak,2000);
+    }catch(_){}
   }
-  function stop(){ if(ready) Tone.Transport.pause(); on=false; ui(); }
+  function stop(){ if(ready) Tone.Transport.pause(); on=false; stopVoice(); ui(); }
   function ui(){ const b=$("#musicBtn"); b.classList.toggle("on",on); b.setAttribute("aria-pressed",on); b.querySelector(".lbl").textContent=on?"Pausar música":"Música"; }
   function toggle(){ wantOn=!on; try{ localStorage.setItem("ube-music",wantOn?"on":"off"); }catch(_){} on?stop():start(); }
   function note(n){ if(on&&fx) fx.triggerAttackRelease(n,"16n"); }
