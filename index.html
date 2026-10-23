@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carreras de tecnología · UBE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F6FC; --surface:#FFFFFF; --ink:#0F1F47; --muted:#55627F; --line:#D9E1F0;
+  --isi:#0A8FB2; --isi-soft:#DDF4FA; --iac:#D9335F; --iac-soft:#FCE3EA;
+  --sun:#FFC83A; --sun-ink:#2A1E00;
+  --hero:#0B1736; --hero-ink:#EEF3FF; --hero-muted:#A9B6D6;
+  --u-b:#7A8BB5; --u-p:#3B5BDB; --u-i:#E39B00;
+  --shadow:0 10px 30px rgba(15,31,71,.10);
+  --accent:var(--isi); --accent-soft:var(--isi-soft);
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#081128; --surface:#0F1C3D; --ink:#E9EFFC; --muted:#9CA9C8; --line:#22325C;
+  --isi:#34C6EA; --isi-soft:#0E3446; --iac:#FF5C86; --iac-soft:#3F1527;
+  --u-b:#8E9DC4; --u-p:#7B95FF; --u-i:#FFC23A; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#081128; --surface:#0F1C3D; --ink:#E9EFFC; --muted:#9CA9C8; --line:#22325C;
+  --isi:#34C6EA; --isi-soft:#0E3446; --iac:#FF5C86; --iac-soft:#3F1527;
+  --u-b:#8E9DC4; --u-p:#7B95FF; --u-i:#FFC23A; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--hero)}
+h1,h2,h3,h4{font-family:"Unbounded","Arial Black",system-ui,sans-serif;line-height:1.12;margin:0}
+a{color:inherit} button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--hero);color:var(--hero-ink);border-bottom:1px solid rgba(255,255,255,.06)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo img{height:46px;width:auto;display:block}
+.logo svg{height:44px;width:auto}
+.logo span{font:700 .82rem/1.15 "Plus Jakarta Sans",sans-serif;color:var(--hero-muted);max-width:150px}
+.top nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.top nav a{padding:8px 12px;border-radius:999px;text-decoration:none;font-weight:500;font-size:.95rem;color:var(--hero-muted)}
+.top nav a:hover{color:var(--hero-ink);background:rgba(255,255,255,.08)}
+.top nav a.cta{background:var(--sun);color:var(--sun-ink);font-weight:700}
+.music{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--hero-ink);border-radius:999px;padding:7px 13px 7px 10px;cursor:pointer;font-size:.9rem;font-weight:500}
+.music .eq{display:flex;gap:2px;align-items:flex-end;height:14px}
+.music .eq i{width:3px;background:var(--sun);border-radius:2px;height:4px}
+.music.on .eq i{animation:eq 1s ease-in-out infinite}
+.music.on .eq i:nth-child(2){animation-delay:.2s}.music.on .eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:4px}50%{height:14px}}
+@media (prefers-reduced-motion:reduce){.music.on .eq i{animation:none;height:10px}}
+@media (max-width:820px){.top nav a:not(.cta){display:none}.logo span{display:none}.music .lbl{display:none}}
+
+.hero{position:relative;background:var(--hero);color:var(--hero-ink);overflow:hidden;min-height:min(88vh,760px);display:flex;align-items:center}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;padding-top:56px;padding-bottom:72px;pointer-events:none}
+.hero .wrap>*{pointer-events:auto}
+.hero p.kicker{color:var(--hero-muted);font-weight:500;margin:0 0 18px}
+.hero h1{font-size:clamp(2.3rem,7vw,5.4rem);font-weight:900;letter-spacing:-.02em;max-width:13ch}
+.hero h1 .l2{display:block;color:transparent;-webkit-text-stroke:2px var(--hero-ink)}
+.hero .lead{max-width:48ch;color:var(--hero-muted);font-size:1.15rem;margin:22px 0 34px}
+.paths{display:flex;flex-wrap:wrap;gap:14px}
+.path{display:flex;align-items:center;gap:14px;padding:14px 22px 14px 14px;border-radius:18px;border:2px solid rgba(255,255,255,.18);background:rgba(11,23,54,.7);backdrop-filter:blur(6px);cursor:pointer;text-align:left;transition:transform .2s,border-color .2s}
+.path:hover{transform:translateY(-3px)}
+.path[data-c="isi"]:hover{border-color:#34C6EA}.path[data-c="iac"]:hover{border-color:#FF5C86}
+.path .dot{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;flex:none}
+.path[data-c="isi"] .dot{background:#0A8FB2}.path[data-c="iac"] .dot{background:#D9335F}
+.path b{display:block;font-family:"Unbounded",sans-serif;font-size:.98rem;color:var(--hero-ink)}
+.path small{color:var(--hero-muted)}
+.stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:44px;color:var(--hero-muted);font-size:.92rem}
+.stats b{display:block;font-family:"Unbounded",sans-serif;font-size:1.6rem;color:var(--hero-ink)}
+
+section.block{padding:84px 0}
+.block h2{font-size:clamp(1.7rem,4vw,2.8rem);letter-spacing:-.01em;max-width:20ch}
+.block .sub{color:var(--muted);max-width:60ch;margin:14px 0 0}
+
+.switch{display:inline-flex;padding:5px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);max-width:100%;overflow-x:auto}
+.switch button{border:0;background:none;padding:11px 20px;border-radius:999px;cursor:pointer;font-weight:700;white-space:nowrap;color:var(--muted);transition:background .25s,color .25s}
+.switch button[aria-selected="true"]{color:#fff}
+.switch button[aria-selected="true"][data-c="isi"]{background:var(--isi)}
+.switch button[aria-selected="true"][data-c="iac"]{background:var(--iac)}
+#switch1{margin:32px 0 28px}
+
+.career{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+@media (max-width:860px){.career{grid-template-columns:1fr}}
+.career-main{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:34px;position:relative;overflow:hidden}
+.career-main::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:var(--accent-soft)}
+.career-main>*{position:relative;z-index:1}
+.career-main h3{font-size:clamp(1.35rem,3vw,1.95rem);color:var(--accent)}
+.career-main .motto{font-size:1.22rem;font-weight:500;margin:12px 0 22px;max-width:36ch}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px;padding:0;list-style:none}
+.facts li{padding:8px 14px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font-size:.92rem}
+.facts li b{color:var(--accent)}
+.doing{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.doing li{display:flex;gap:12px;align-items:flex-start}
+.doing svg{flex:none;margin-top:3px;color:var(--accent)}
+.side{display:grid;gap:18px}
+.jobs{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px}
+.jobs h4,.hook h4{margin:0 0 14px;font-size:1rem}
+.jobs ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.jobs li{padding:7px 13px;border-radius:999px;background:var(--accent-soft);font-weight:500;font-size:.93rem}
+.hook{border-radius:22px;padding:26px;background:var(--accent);color:#fff}
+.hook p{margin:0}
+.hook .go{margin-top:16px;display:inline-block;background:#fff;color:#0F1F47;padding:10px 18px;border-radius:999px;font-weight:700;text-decoration:none}
+
+#malla{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.malla-bar{display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between;margin:30px 0 18px}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.legend button{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg);padding:7px 13px;border-radius:999px;cursor:pointer;font-size:.9rem;font-weight:500}
+.legend button[aria-pressed="false"]{opacity:.45}
+.legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.split{display:flex;height:10px;border-radius:6px;overflow:hidden;margin:0 0 6px}
+.split-l{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.86rem;color:var(--muted);margin:0 0 22px}
+.progress{display:flex;align-items:center;gap:14px;margin:0 0 22px;flex-wrap:wrap}
+.progress label{font-weight:700}
+.progress input{flex:1;min-width:200px;accent-color:var(--accent)}
+.progress output{font-family:"Unbounded",sans-serif;font-size:.95rem;color:var(--accent);min-width:10ch}
+.grid-scroll{overflow-x:auto;padding-bottom:12px;scroll-snap-type:x proximity}
+.periods{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);gap:14px;min-width:min-content}
+.period{scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
+.period header{display:flex;align-items:baseline;gap:8px;padding:0 4px 8px;border-bottom:3px solid var(--line);transition:border-color .3s}
+.period header b{font-family:"Unbounded",sans-serif;font-size:1.5rem;color:var(--muted);transition:color .3s}
+.period header span{font-size:.82rem;color:var(--muted)}
+.period.done header{border-color:var(--accent)}
+.period.done header b{color:var(--accent)}
+.subj{border:1px solid var(--line);background:var(--bg);border-left:5px solid var(--u);border-radius:12px;padding:11px 12px;text-align:left;cursor:pointer;font-size:.92rem;line-height:1.3;font-weight:500;transition:transform .15s,box-shadow .15s,opacity .25s}
+.subj:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.subj.dim{opacity:.16;pointer-events:none}
+.period.done .subj{background:var(--accent-soft)}
+.subj small{display:flex;flex-wrap:wrap;gap:6px;color:var(--muted);font-weight:400;margin-top:6px;font-size:.78rem}
+.tag{padding:1px 7px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-weight:700;color:var(--ink)}
+.subj.it{border-style:dashed;border-left-style:solid}
+.milestone{font-size:.8rem;font-weight:700;color:var(--accent);display:flex;gap:6px;align-items:center;padding:0 4px}
+
+.drawer-bg{position:fixed;inset:0;background:rgba(5,12,30,.55);z-index:80;opacity:0;pointer-events:none;transition:opacity .25s}
+.drawer-bg.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;z-index:90;right:0;top:0;bottom:0;width:min(440px,100%);background:var(--surface);color:var(--ink);padding:calc(env(safe-area-inset-top,0px) + 28px) 28px calc(env(safe-area-inset-bottom,0px) + 28px);transform:translateX(105%);transition:transform .3s ease;overflow-y:auto;box-shadow:-20px 0 40px rgba(0,0,0,.25)}
+.drawer.open{transform:none}
+.drawer .close{position:absolute;right:18px;top:calc(env(safe-area-inset-top,0px) + 16px);border:0;background:var(--bg);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.3rem}
+.drawer .unit{display:inline-block;padding:5px 12px;border-radius:999px;color:#fff;font-size:.82rem;font-weight:700;background:var(--u)}
+.drawer h3{font-size:1.35rem;margin:16px 0 6px;padding-right:30px}
+.drawer .per{color:var(--muted);margin:0 0 16px;font-size:.95rem}
+.drawer .phrase{font-size:1.12rem;font-weight:500;margin:0 0 20px}
+.drawer h4{font-family:"Plus Jakarta Sans",sans-serif;font-size:.95rem;margin:22px 0 8px}
+.drawer .off{color:var(--muted);font-size:.95rem;margin:0}
+.hours{display:flex;height:12px;border-radius:6px;overflow:hidden;margin:4px 0 8px}
+.hours-l{display:grid;gap:4px;font-size:.88rem}
+.hours-l span{display:flex;align-items:center;gap:8px}
+.hours-l i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.opt{display:grid;gap:8px;margin-top:6px}
+.opt div{border:1px dashed var(--line);border-radius:12px;padding:10px 12px}
+.opt b{color:var(--accent)}
+
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:36px;border-top:2px solid var(--ink)}
+@media (max-width:900px){.how{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.how{grid-template-columns:1fr}}
+.how div{padding:24px 22px 8px 0}
+.how b{display:block;font-family:"Unbounded",sans-serif;font-size:2rem;color:var(--accent);line-height:1}
+.how h3{font-size:1.02rem;margin:12px 0 8px}
+.how p{margin:0;color:var(--muted);font-size:.97rem}
+.grad{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+@media (max-width:720px){.grad{grid-template-columns:1fr}}
+.grad div{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px}
+.grad h3{font-size:1.05rem;margin-bottom:8px}
+.grad p{margin:0;color:var(--muted)}
+
+.quiz{margin-top:34px;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:34px;max-width:780px}
+.quiz .step{color:var(--muted);font-weight:500;margin:0 0 10px}
+.quiz .bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:24px}
+.quiz .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--isi),var(--iac));transition:width .35s}
+.quiz h3{font-size:clamp(1.15rem,2.6vw,1.5rem);margin-bottom:20px}
+.opts{display:grid;gap:10px}
+.opts button{border:2px solid var(--line);background:var(--bg);border-radius:16px;padding:15px 18px;text-align:left;cursor:pointer;font-weight:500;transition:border-color .2s,transform .15s}
+.opts button:hover{border-color:var(--ink);transform:translateX(4px)}
+.result .big{font-family:"Unbounded",sans-serif;font-size:clamp(1.3rem,3.4vw,2.1rem);margin:8px 0 14px}
+.result .meter{display:flex;height:14px;border-radius:8px;overflow:hidden;margin:18px 0 8px}
+.result .meter i:first-child{background:var(--isi)}.result .meter i:last-child{background:var(--iac)}
+.result .meter-l{display:flex;justify-content:space-between;font-size:.88rem;color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{border:0;cursor:pointer;padding:12px 20px;border-radius:999px;font-weight:700;text-decoration:none;display:inline-block}
+.btn.main{background:var(--ink);color:var(--bg)}
+.btn.ghost{background:transparent;border:2px solid var(--line)}
+
+.final{background:var(--hero);color:var(--hero-ink)}
+.final h2{color:var(--hero-ink);max-width:16ch}
+.final .sub{color:var(--hero-muted)}
+.final .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.final .btn.main{background:var(--sun);color:var(--sun-ink)}
+.final .btn.ghost{color:var(--hero-ink);border-color:rgba(255,255,255,.3)}
+footer{background:var(--hero);color:var(--hero-muted);padding:26px 0 30px;font-size:.88rem;border-top:1px solid rgba(255,255,255,.08)}
+
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);transform:translate(-50%,140%);z-index:70;background:var(--hero);color:var(--hero-ink);border:1px solid rgba(255,255,255,.18);padding:10px 16px;border-radius:999px;font-size:.92rem;transition:transform .4s;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.toast.show{transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.drawer,.path,.subj,.toast{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Universidad Bolivariana del Ecuador, inicio">
+      <!--LOGO_START--><svg viewBox="0 0 48 48" role="img" aria-label="UBE"><rect x="1" y="1" width="46" height="46" rx="12" fill="none" stroke="#FFC83A" stroke-width="2"/><text x="24" y="30" text-anchor="middle" font-family="Unbounded, Arial Black, sans-serif" font-weight="900" font-size="14" fill="#EEF3FF">UBE</text></svg><!--LOGO_END-->
+      <span>Universidad Bolivariana del Ecuador</span>
+    </a>
+    <nav aria-label="Secciones">
+      <a href="#carreras">Carreras</a>
+      <a href="#malla">Malla</a>
+      <a href="#estudiar">Cómo estudias</a>
+      <a href="#test">Test</a>
+      <button class="music" id="musicBtn" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">Música</span></button>
+      <a class="cta" href="#inscribete">Inscríbete</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="kicker">Ingenierías 100% en línea para quienes salen del colegio</p>
+    <h1>Crea la IA.<span class="l2">Protege el mundo.</span></h1>
+    <p class="lead">Dos ingenierías de la UBE para construir lo que viene: máquinas que aprenden, videojuegos, robots y sistemas que nadie puede romper. Elige tu camino y mira materia por materia lo que vas a estudiar.</p>
+    <div class="paths">
+      <button class="path" data-c="isi" type="button">
+        <span class="dot" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><path d="M7 6l3 5M7 18l3-5M14 12h3"/></svg></span>
+        <span><b>Sistemas Inteligentes</b><small>IA, videojuegos, robótica e IoT</small></span>
+      </button>
+      <button class="path" data-c="iac" type="button">
+        <span class="dot" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <span><b>IA y Ciberseguridad</b><small>Hacking ético y defensa con IA</small></span>
+      </button>
+    </div>
+    <div class="stats" aria-label="Datos de las carreras">
+      <div><b>8</b>periodos de 18 semanas</div>
+      <div><b>43</b>asignaturas por carrera</div>
+      <div><b>360 h</b>de prácticas reales</div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="carreras">
+  <div class="wrap">
+    <h2 class="reveal">¿Construir o defender? Las dos usan IA.</h2>
+    <p class="sub reveal">Cambia de carrera con el selector y descubre qué vas a hacer, dónde puedes trabajar y qué título obtienes.</p>
+    <div class="switch" role="tablist" aria-label="Elegir carrera" id="switch1"></div>
+    <div class="career" id="careerView" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="block" id="malla">
+  <div class="wrap">
+    <h2 class="reveal">Tu malla, periodo por periodo</h2>
+    <p class="sub reveal">Toca cualquier materia para ver qué vas a aprender. Mueve la barra para imaginar hasta dónde llegas.</p>
+    <div class="malla-bar">
+      <div class="switch" role="tablist" aria-label="Elegir malla" id="switch2"></div>
+      <div class="legend" id="legend" aria-label="Filtrar por unidad"></div>
+    </div>
+    <div id="splitBox"></div>
+    <div class="progress">
+      <label for="prog">Tu avance</label>
+      <input type="range" id="prog" min="0" max="8" value="0">
+      <output id="progOut" for="prog">Inicio</output>
+    </div>
+    <div class="grid-scroll" tabindex="0" aria-label="Malla curricular, desplazable">
+      <div class="periods" id="periods"></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="estudiar">
+  <div class="wrap">
+    <h2 class="reveal">Así se estudia en la UBE</h2>
+    <p class="sub reveal">Clases en vivo, plataforma disponible todo el día y proyectos desde el primer periodo.</p>
+    <div class="how">
+      <div><b>100%</b><h3>En línea</h3><p>Clases en vivo por videoconferencia y material en la plataforma para estudiar a tu ritmo, desde cualquier lugar del Ecuador.</p></div>
+      <div><b>120 h</b><h3>Servicio comunitario</h3><p>En el cuarto periodo aplicas lo aprendido en proyectos que ayudan a la comunidad.</p></div>
+      <div><b>240 h</b><h3>Prácticas laborales</h3><p>En el octavo periodo trabajas en una empresa u organización real.</p></div>
+      <div><b>B1</b><h3>Inglés incluido</h3><p>Alcanzas el nivel B1 gracias al convenio con Buckingham English Center.</p></div>
+    </div>
+    <h3 class="reveal" style="margin-top:56px;font-size:1.35rem">Te gradúas a tu manera</h3>
+    <div class="grad">
+      <div><h3>Trabajo de integración curricular</h3><p>Investigas un problema real con un tutor y lo sustentas ante un tribunal.</p></div>
+      <div><h3>Examen complexivo</h3><p>Demuestras lo aprendido en una prueba teórica y la solución de un caso práctico profesional.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="test" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="reveal">¿No sabes cuál elegir?</h2>
+    <p class="sub reveal">Cinco preguntas rápidas y te decimos con cuál conectas más.</p>
+    <div class="quiz" id="quiz"></div>
+  </div>
+</section>
+
+<section class="block final" id="inscribete">
+  <div class="wrap">
+    <h2>Tu primer periodo empieza aquí.</h2>
+    <p class="sub">Estudia en línea y obtén tu título de ingeniería. Escríbenos y te ayudamos con la inscripción.</p>
+    <div class="row">
+      <a class="btn main" href="https://ube.edu.ec" target="_blank" rel="noopener">Quiero inscribirme</a>
+      <a class="btn ghost" href="#malla">Ver la malla otra vez</a>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap">Universidad Bolivariana del Ecuador · Km 5½ vía Durán–Yaguachi, Durán, Guayas · Ingeniería en Sistemas Inteligentes · Ingeniería en Inteligencia Artificial y Ciberseguridad</div></footer>
+
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" aria-hidden="true">
+  <button class="close" id="dClose" aria-label="Cerrar">×</button>
+  <div id="dBody"></div>
+</aside>
+<div class="toast" id="toast" role="status">Toca en cualquier lugar para activar la música</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+<script>
+const MALLAS = {"isi": [[{"n": "Matemáticas I", "u": "b", "h": 120, "f": "Funciones, gráficas y el lenguaje matemático con el que piensan los algoritmos."}, {"n": "Comunicación y Comprensión Lectora", "u": "b", "h": 120, "f": "Lee, escribe y explica ideas técnicas con claridad."}, {"n": "Álgebra Lineal y Geometría Analítica", "u": "b", "h": 120, "f": "Vectores y matrices: la base de los gráficos 3D y de la IA."}, {"n": "Análisis y Resolución de Problemas", "u": "b", "h": 120, "f": "Aprende a desarmar un problema grande en pasos que se pueden resolver."}, {"n": "Introducción a la Programación", "u": "p", "h": 120, "f": "Escribes tus primeros programas desde cero."}, {"n": "Herramientas de Diseño Gráfico", "u": "p", "h": 120, "f": "Diseña piezas visuales con herramientas profesionales."}], [{"n": "Matemáticas II", "u": "b", "h": 120, "f": "Cálculo: cómo cambian las cosas y cómo medirlo."}, {"n": "Física I", "u": "b", "h": 120, "f": "Movimiento y fuerzas, clave para simular el mundo real."}, {"n": "Optativa", "u": "b", "h": 120, "f": "Una asignatura que eliges para ampliar tu formación."}, {"n": "Programación Orientada a Objetos", "u": "p", "h": 120, "f": "Organiza tu código como lo hacen los equipos profesionales."}, {"n": "Base de Datos", "u": "p", "h": 120, "f": "Guarda, consulta y protege información con SQL."}, {"n": "Tratamiento y Edición de Videos", "u": "p", "h": 120, "f": "Edita y produce video para contar historias digitales."}], [{"n": "Matemáticas III", "u": "b", "h": 120, "f": "Cálculo avanzado para modelar sistemas complejos."}, {"n": "Física II", "u": "b", "h": 120, "f": "Electricidad y magnetismo: lo que mueve a los circuitos."}, {"n": "Programación Web Avanzada", "u": "p", "h": 120, "f": "Crea sitios y plataformas web completas."}, {"n": "Organización y Arquitectura Computacional", "u": "p", "h": 120, "f": "Entiende qué pasa por dentro de un computador."}, {"n": "Modelado y Animación 3D", "u": "p", "h": 120, "f": "Modela personajes y escenas en 3D y dales vida."}, {"n": "Ingeniería de Software", "u": "p", "h": 120, "f": "Planifica y construye software en equipo, de la idea al producto."}], [{"n": "Matemáticas IV", "u": "b", "h": 120, "f": "Ecuaciones y métodos que usan la simulación y la IA."}, {"n": "Probabilidades y Estadística", "u": "b", "h": 120, "f": "Saca conclusiones de los datos y mide la incertidumbre."}, {"n": "Datawarehouse y Big Data", "u": "p", "h": 160, "f": "Maneja volúmenes gigantes de datos como las grandes empresas.", "psc": 40}, {"n": "Sistemas Operativos", "u": "p", "h": 160, "f": "Domina Linux, Windows y cómo administran procesos y memoria.", "psc": 40}, {"n": "Desarrollo de Videojuegos", "u": "p", "h": 160, "f": "Diseña y programa tu propio videojuego.", "psc": 40}], [{"n": "Desarrollo de Aplicaciones Móviles", "u": "p", "h": 120, "f": "Crea apps para Android e iOS."}, {"n": "Redes y Telecomunicaciones", "u": "p", "h": 120, "f": "Cómo viaja la información por internet y las redes."}, {"n": "Calidad de Software y Sistemas", "u": "p", "h": 120, "f": "Prueba y mejora el software para que no falle."}, {"n": "Infotecnología, Ética y Cultura Jurídica en Informática", "u": "p", "h": 120, "f": "Las leyes y la ética detrás de la tecnología."}, {"n": "Marketing Digital", "u": "p", "h": 120, "f": "Haz crecer productos digitales en redes y buscadores."}, {"n": "E-Business", "u": "p", "h": 120, "f": "Modelos de negocio en internet y comercio electrónico."}], [{"n": "Modelado y Simulación de Sistemas", "u": "p", "h": 120, "f": "Simula sistemas reales en el computador antes de construirlos."}, {"n": "Seguridad Informática", "u": "p", "h": 120, "f": "Protege sistemas y datos frente a ataques."}, {"n": "Inteligencia de Negocios", "u": "p", "h": 120, "f": "Convierte datos en tableros que ayudan a decidir."}, {"n": "Minería de Datos", "u": "p", "h": 120, "f": "Descubre patrones ocultos en grandes bases de datos."}, {"n": "Proyecto Integrador I", "u": "p", "h": 120, "f": "Une lo aprendido en un proyecto real con tu equipo."}, {"n": "Itinerario formativo I", "u": "p", "h": 120, "f": "Eliges tu ruta de especialización.", "it": ["Informática Aplicada I", "Robótica y Sistemas Autónomos"]}], [{"n": "Emprendimiento y Negocios", "u": "b", "h": 120, "f": "Convierte una idea tecnológica en un emprendimiento."}, {"n": "Computación en la Nube", "u": "p", "h": 120, "f": "Despliega aplicaciones en la nube como AWS o Azure."}, {"n": "Inteligencia Artificial", "u": "p", "h": 120, "f": "Construye sistemas que aprenden y toman decisiones."}, {"n": "Softcomputing y Computación Afectiva", "u": "p", "h": 120, "f": "IA que razona con incertidumbre y reconoce emociones."}, {"n": "Proyecto Integrador II", "u": "p", "h": 120, "f": "Llevas tu proyecto integrador al siguiente nivel."}, {"n": "Itinerario formativo II", "u": "p", "h": 120, "f": "Continúas la ruta que elegiste.", "it": ["Informática Aplicada II", "Domótica e Internet de las Cosas"]}], [{"n": "Sistemas de Información Geográfica", "u": "p", "h": 360, "f": "Mapas inteligentes y datos geográficos, junto a tus prácticas laborales.", "pl": 240}, {"n": "Trabajo de Integración Curricular", "u": "i", "h": 360, "f": "Te gradúas con un trabajo de investigación o un examen complexivo."}]], "iac": [[{"n": "Comunicación y Comprensión Lectora", "u": "b", "h": 120, "f": "Lee, escribe y explica ideas técnicas con claridad.", "o": "Comprensión lectora de documentos técnicos. Habilidades de redacción técnica. Análisis crítico de información. Lectura comprensiva de códigos y algoritmos. Interpretación de estándares y regulaciones. Habilidades de comunicación oral."}, {"n": "Representación del Conocimiento y Razonamiento", "u": "b", "h": 120, "f": "Cómo una máquina guarda conocimiento y razona con lógica.", "o": "Representación del Conocimiento. Lógica proposicional y de primer orden. Redes Semánticas. Marcos (Frame-based systems). Ontologías. Lógica difusa. Razonamiento en Inteligencia Artificial. Inferencia lógica."}, {"n": "Análisis y Resolución de Problemas", "u": "b", "h": 120, "f": "Resuelve retos con pensamiento de diseño.", "o": "Innovación e introducción al análisis y resolución de problemas. La innovación. Análisis y Resolución de Problema (ARP) ARP con Pensamiento de Diseño. La importancia del Diseño Centrado en el Usuario. Búsquedas de Información Científicas."}, {"n": "Fundamentos de Redes", "u": "p", "h": 120, "f": "Cómo se conectan los equipos y viaja la información.", "o": "Modelos de red, direccionamiento IP, enrutamiento y conmutación, medios de transmisión y configuración básica de redes locales."}, {"n": "Sistemas Operativos", "u": "p", "h": 120, "f": "Procesos, memoria y archivos: el cerebro de cada equipo.", "o": "Introducción a los Sistemas Operativos S.O. Conceptos, procesos, memoria, entrada y salida. Qué es un S.O. Breve reseña histórica, conceptos. Llamadas al S.O. Estructura del S.O. Introducción de Procesos. Comunicación entre procesos."}, {"n": "Programación Estructurada", "u": "p", "h": 120, "f": "Escribes tus primeros programas desde cero.", "o": "Introducción a la Programación: Definición de conceptos básicos: algoritmo, programa, compilador, intérprete. Historia y evolución de los lenguajes de programación. Conceptos Básicos de Programación: Variables y tipos de datos."}], [{"n": "Estructuras Discretas", "u": "b", "h": 120, "f": "Lógica, conjuntos y grafos: la matemática de la computación.", "o": "Lógica proposicional y de predicados, conjuntos, relaciones y funciones, inducción matemática, combinatoria y teoría de grafos."}, {"n": "Cálculo de una Variable", "u": "b", "h": 120, "f": "Límites y derivadas para entender cómo cambian las cosas.", "o": "Cálculo diferencial de funciones de una variable real. Propiedades algébricas y métricas. Nociones básicas de lógica. Funciones y modelos. Límite y continuidad de funciones de una variable real. Derivada en un punto."}, {"n": "Fundamentos de Ciberseguridad", "u": "p", "h": 120, "f": "Amenazas, criptografía y cómo se protege la información.", "o": "Introducción a la Ciberseguridad. Definición de ciberseguridad y su importancia en el contexto de la inteligencia artificial. Amenazas y desafíos específicos para la seguridad en sistemas de inteligencia artificial. Criptografía."}, {"n": "Fundamentos de Inteligencia Artificial", "u": "p", "h": 120, "f": "Qué es la IA, de dónde viene y para qué sirve.", "o": "Introducción a la Inteligencia Artificial (IA). Definición y alcance de la inteligencia artificial. Breve historia y evolución de la IA. Aplicaciones y campos de aplicación de la IA en la ciberseguridad."}, {"n": "Programación Orientada a Objetos", "u": "p", "h": 120, "f": "Organiza tu código como los equipos profesionales, en Java.", "o": "Fundamentos de la Programación Orientada a Objetos POO. Conceptos iniciales. Características de la POO. Lenguajes orientados a objeto. Aplicaciones. POO en Java."}, {"n": "Base de Datos", "u": "p", "h": 120, "f": "Guarda, consulta y protege información con SQL.", "o": "Introducción a los Sistemas Gestores de Base de Datos. Modelo conceptual y modelo lógico. Normalización y álgebra relacional. Lenguaje SQL. Manipulación y seguridad. Denormalización de un modelo lógico."}], [{"n": "Realidad Socioeconómica y Cultural del Ecuador", "u": "b", "h": 120, "f": "El país donde vas a aplicar la tecnología.", "o": "Análisis de la realidad económica, social y cultural del Ecuador y sus desafíos de desarrollo."}, {"n": "Álgebra Lineal", "u": "b", "h": 120, "f": "Vectores y matrices: el idioma de las redes neuronales.", "o": "Matrices y números complejos. Números complejos. Sistemas de ecuaciones lineales. Determinantes. Matrices, operaciones fundamentales, propiedades. Matriz inversa. Rango de una matriz. Elementos de Geometría analítica. Rectas y Cónicas."}, {"n": "Programación Segura", "u": "p", "h": 120, "f": "Escribe código que los atacantes no puedan romper.", "o": "Conceptos Fundamentales de Seguridad Informática. Introducción a los principios de seguridad informática: confidencialidad, integridad y disponibilidad."}, {"n": "Minería de Datos", "u": "p", "h": 120, "f": "Descubre patrones ocultos en grandes cantidades de datos.", "o": "Panorámica general. Definición y conceptos básicos. Taxonomía de las técnicasde Minería de Datos: Tipos de modelos. Tipos de aprendizaje. Técnicas no supervisadas y supervisadas. Aplicaciones. Fases de la Minería de Datos."}, {"n": "Aplicaciones Web", "u": "p", "h": 120, "f": "Crea sitios web con frontend y backend modernos.", "o": "Desarrollo Frontend. HTML, CSS y JavaScript: fundamentos y prácticas avanzadas. Uso de frameworks modernos (React, Angular, Vue.js) para el desarrollo de interfaces de usuario dinámicas y atractivas. Desarrollo Backend."}, {"n": "Estructuras de Datos", "u": "p", "h": 120, "f": "Listas, árboles y grafos para programar con eficiencia.", "o": "Conceptos Fundamentales de Estructuras de Datos. Introducción a conceptos básicos como arrays, listas enlazadas, pilas, colas, árboles, grafos, tablas hash, entre otros."}], [{"n": "Ingeniería del Software Seguro", "u": "p", "h": 160, "f": "Diseña software seguro desde el primer día.", "psc": 40, "o": "Conceptos Fundamentales de Seguridad en Software. Introducción a los principios básicos de seguridad informática y sus aplicaciones en el desarrollo de software."}, {"n": "Seguridad en Servicios y Protocolos de Internet", "u": "p", "h": 120, "f": "Protege los protocolos que hacen funcionar internet.", "o": "Fundamentos de Protocolos de Internet. Introducción a los protocolos de Internet como TCP/IP, UDP, DNS, HTTP/HTTPS, SSL/TLS, entre otros. Comprender la estructura, funcionalidad y componentes clave de estos protocolos."}, {"n": "Identidad Digital y Privacidad", "u": "p", "h": 160, "f": "Autenticación, control de acceso y protección de datos personales.", "psc": 40, "o": "Conceptos Fundamentales de Identidad Digital. Definición y comprensión de la identidad digital, incluyendo la gestión de identidades, autenticación, autorización y control de acceso. Regulaciones y Normativas de Privacidad."}, {"n": "Aprendizaje Automático", "u": "p", "h": 160, "f": "Entrena tus primeros modelos de machine learning.", "psc": 40, "o": "Introducción al Aprendizaje Automático. Conceptos fundamentales: tipos de aprendizaje (supervisado, no supervisado, reforzado), conceptos de generalización, sesgo-varianza, entre otros."}, {"n": "Aplicaciones Web Avanzado", "u": "p", "h": 120, "f": "Frameworks y arquitecturas web de nivel profesional.", "o": "Frameworks y Tecnologías Avanzadas. Profundización en el uso de frameworks modernos para el desarrollo web, como Angular, React, Vue.js u otros similares."}], [{"n": "Probabilidad y Estadística", "u": "b", "h": 120, "f": "Saca conclusiones de los datos y mide la incertidumbre.", "o": "Probabilidades y Eventos. Fenómenos aleatorios. Eventos aleatorios. Conceptos de Probabilidad. Probabilidad Condicional. Fórmulas básicas de la teoría de las probabilidades para el cálculo de probabilidades de eventos."}, {"n": "Inteligencia Malware", "u": "p", "h": 120, "f": "Analiza virus, troyanos y ransomware para entender cómo atacan.", "o": "Introducción a Malware. Definición, historia y evolución del malware. Clasificación y categorías de malware: virus, gusanos, troyanos, ransomware, entre otros. Análisis Estático y Dinámico de Malware. Técnicas de análisis estático."}, {"n": "Seguridad en Aplicaciones Web", "u": "p", "h": 120, "f": "Encuentra y corrige las vulnerabilidades más comunes de la web.", "o": "Introducción a la Seguridad en Aplicaciones Web. Conceptos básicos de seguridad informática y su aplicación específica en aplicaciones web. Descripción de amenazas comunes y riesgos de seguridad asociados a las aplicaciones web."}, {"n": "Aprendizaje Profundo y Reforzado", "u": "p", "h": 120, "f": "Redes neuronales y agentes que aprenden por ensayo y error.", "o": "Fundamentos del Aprendizaje Profundo. Redes neuronales artificiales. Arquitecturas de aprendizaje profundo. Métodos de entrenamiento. Aplicaciones de Aprendizaje Profundo en Ciberseguridad."}, {"n": "Procesamiento de Lenguaje Natural", "u": "p", "h": 120, "f": "Enseña a las máquinas a entender el lenguaje humano.", "o": "Introducción al Procesamiento de Lenguaje Natural. Definición y alcance del PLN. Aplicaciones en diferentes contextos, incluyendo ciberseguridad e inteligencia artificial. Preprocesamiento de Texto. Tokenización y segmentación de texto."}, {"n": "Aplicaciones Móviles", "u": "p", "h": 120, "f": "Crea apps para Android e iOS.", "o": "Desarrollo de Aplicaciones Móviles. Fundamentos del desarrollo de aplicaciones móviles para diferentes plataformas (iOS, Android). Herramientas y entornos de desarrollo (IDEs), frameworks y lenguajes de programación."}], [{"n": "Métodos de Optimización y Simulación", "u": "b", "h": 120, "f": "Encuentra la mejor solución posible y simúlala antes de aplicarla.", "o": "Fundamentos de Optimización. Introducción a los métodos de optimización, incluyendo optimización lineal y no lineal, programación entera, métodos de gradiente descendente, entre otros."}, {"n": "Ciberseguridad en Sistemas de Inteligencia Artificial", "u": "p", "h": 120, "f": "Protege a la IA de ataques y manipulaciones.", "o": "Fundamentos de Seguridad Informática. Principios básicos de seguridad informática y conceptos relevantes para sistemas de IA. Amenazas comunes y desafíos específicos de seguridad en sistemas de inteligencia artificial."}, {"n": "Informática Forense y Ciberdelincuencia", "u": "p", "h": 120, "f": "Investiga delitos digitales como un detective.", "o": "Conceptos Fundamentales de Informática Forense. Introducción a la informática forense: definiciones, objetivos y métodos de investigación forense digital. Marco legal y ético en la realización de investigaciones forenses."}, {"n": "Hacking Ético", "u": "p", "h": 120, "f": "Ataca sistemas con permiso para encontrar sus fallas primero.", "o": "Introducción al Hacking Ético. Definiciones, objetivos y principios éticos del hacking ético. Marco legal y ético en la realización de pruebas de penetración. Metodologías de Pruebas de Penetración."}, {"n": "Visión por Computador", "u": "p", "h": 120, "f": "Reconocimiento de objetos, rostros y biometría con IA.", "o": "Fundamentos de Procesamiento de Imágenes. Extracción de Características Visuales. Reconocimiento y Clasificación de Objetos. Segmentación de Imágenes. Detección y Seguimiento de Objetos. Reconocimiento Facial y Biometría."}, {"n": "Proyecto IA aplicado a la Industria y Empresa", "u": "p", "h": 120, "f": "Resuelve un problema real de una empresa con IA.", "o": "Contextualización de la temática objeto de estudio y elementos fundamentales para la precisión del diseño teórico metodológico. Fases de la etapa de construcción teórica - práctica. Proceso experimental. Población. Muestra."}], [{"n": "Emprendimiento y Negocios", "u": "b", "h": 120, "f": "Convierte una idea tecnológica en un emprendimiento.", "o": "El emprendedor. Breve reseña del emprendimiento. Concepto de emprendedor. ¿Qué es un emprendedor? Características del emprendedor: Características del ser humano. Cualidades que debería tener un Emprendedor."}, {"n": "Gestión Inteligente de Anomalías y Ciberincidentes", "u": "p", "h": 120, "f": "Usa IA para detectar ataques antes de que causen daño.", "o": "La detección y análisis de anomalías mediante técnicas de inteligencia artificial y aprendizaje automático, la implementación de modelos predictivos para la identificación temprana de comportamientos inusuales en sistemas y redes."}, {"n": "Seguridad en Entornos Móviles y Sistemas Biométricos", "u": "p", "h": 120, "f": "Protege celulares, huellas y reconocimiento facial.", "o": "Seguridad en Dispositivos Móviles. Desarrollo de Aplicaciones Móviles Seguras. Análisis de Riesgos y Mitigación. Sistemas Biométricos. Integración de Biometría en Dispositivos Móviles. Seguridad y Privacidad en Datos Biométricos."}, {"n": "Sistemas de Inteligencia Artificial Ciberseguros", "u": "p", "h": 120, "f": "Diseña IA resistente a ataques adversariales.", "o": "Diseño seguro de sistemas de IA, identificación de vulnerabilidades en modelos y datos, implementación de medidas de protección durante el ciclo de vida del modelo, prevención y respuesta a ataques adversariales en IA, realización de auditorías y…"}, {"n": "Algoritmos de Búsqueda y Optimización Computacional", "u": "p", "h": 120, "f": "A*, algoritmos genéticos y enjambres para resolver problemas difíciles.", "o": "Estudio y aplicación de algoritmos fundamentales como búsqueda en anchura y profundidad, búsqueda heurística (como A*), algoritmos de optimización como algoritmos genéticos, optimización por enjambre de partículas (PSO), teoría de computación evolutiva."}, {"n": "Proyecto Ciberseguridad aplicado a la Industria y Empresa", "u": "p", "h": 120, "f": "Asegura la infraestructura de una empresa real.", "o": "Diagnóstico de seguridad en una organización real, diseño e implementación de controles y presentación de resultados."}], [{"n": "Aspecto Legal para la Ciberseguridad e Inteligencia Artificial", "u": "p", "h": 360, "f": "Leyes, ética y protección de datos, junto a tus prácticas laborales.", "pl": 240, "o": "Comprensión de marcos legales y éticos, regulaciones y normativas relevantes tanto en ciberseguridad como en inteligencia artificial; el análisis de la privacidad y protección de datos; la identificación de responsabilidades legales en prevención y…"}, {"n": "Trabajo de Integración Curricular", "u": "i", "h": 360, "f": "Te gradúas con un trabajo de investigación o un examen complexivo.", "o": "Selección del tema de investigación. Revisión bibliográfica. Escritura y publicación de trabajos científicos."}]]};
+const UNIDADES = {
+  b:{nombre:"Unidad básica", color:"var(--u-b)"},
+  p:{nombre:"Unidad profesional", color:"var(--u-p)"},
+  i:{nombre:"Integración curricular", color:"var(--u-i)"}
+};
+const CARRERAS = {
+  isi:{
+    corto:"Sistemas Inteligentes", nombre:"Ingeniería en Sistemas Inteligentes",
+    lema:"Crea sistemas que aprenden de los datos, videojuegos, apps y robots.",
+    datos:[["Título","Ingeniero/a en Sistemas Inteligentes"],["Modalidad","En línea"],["Duración","8 periodos"],["Carga","5.760 h"]],
+    haras:["Crear sistemas autónomos que procesan datos y toman decisiones","Diseñar videojuegos, animación 3D y apps móviles","Construir proyectos de redes, robótica e internet de las cosas","Analizar datos para que empresas y gobiernos decidan mejor"],
+    trabajos:["Desarrollador/a de software y apps","Especialista en IA y ciencia de datos","Desarrollador/a de videojuegos y 3D","Ingeniero/a de IoT y robótica","Analista de inteligencia de negocios"],
+    gancho:"Si te gusta crear, programar y ver cómo una máquina aprende sola, esta es tu carrera. Y en el sexto periodo eliges tu ruta: Informática Aplicada o Robótica y Domótica.",
+    hitos:{4:"Servicio comunitario",6:"Eliges tu itinerario",8:"Prácticas y titulación"}
+  },
+  iac:{
+    corto:"IA y Ciberseguridad", nombre:"Ingeniería en Inteligencia Artificial y Ciberseguridad",
+    lema:"Usa la inteligencia artificial para detectar ataques antes de que ocurran.",
+    datos:[["Título","Ingeniero/a en Inteligencia Artificial y Ciberseguridad"],["Modalidad","En línea"],["Duración","8 periodos"],["Créditos","120"]],
+    haras:["Practicar hacking ético para encontrar fallas antes que los atacantes","Analizar malware y detectar intrusiones con modelos de IA","Entrenar redes neuronales para visión por computador y lenguaje","Investigar delitos digitales con informática forense"],
+    trabajos:["Analista de ciberseguridad (SOC)","Pentester o hacker ético","Ingeniero/a de machine learning","Perito/a en informática forense","Especialista en seguridad de IA"],
+    gancho:"Si te intriga cómo funcionan los hackeos y quieres estar del lado de los que defienden, esta es tu carrera.",
+    hitos:{4:"Servicio comunitario",6:"Proyecto con empresas",8:"Prácticas y titulación"}
+  }
+};
+const QUIZ = [
+  {q:"Un sábado libre, ¿qué te engancha más?",o:[["Crear un videojuego o una animación","isi"],["Resolver un acertijo o un escape room","iac"],["Armar un robot o un gadget que funcione solo","isi"],["Leer cómo atraparon a un hacker famoso","iac"]]},
+  {q:"Te llega un mensaje raro con un enlace. Tú…",o:[["Lo analizo para ver quién está detrás","iac"],["Pienso en una app que lo filtre automáticamente","isi"],["Reviso si mi cuenta ya fue comprometida","iac"],["Me pregunto cómo una IA lo habría detectado","isi"]]},
+  {q:"¿Qué superpoder elegirías?",o:[["Hacer que las máquinas piensen","isi"],["Volverme invisible para los atacantes","iac"],["Predecir el futuro con datos","isi"],["Ver lo que otros intentan esconder","iac"]]},
+  {q:"En un trabajo en grupo, tú eres quien…",o:[["Construye la solución y la hace funcionar","isi"],["Encuentra los errores antes que nadie","iac"],["Diseña cómo se ve y se usa","isi"],["Piensa en todo lo que podría salir mal","iac"]]},
+  {q:"¿Qué titular te gustaría protagonizar?",o:[["“Joven ecuatoriana crea IA que ayuda a agricultores”","isi"],["“Estudiante detiene ciberataque a un banco”","iac"],["“Videojuego hecho en Guayaquil llega a millones”","isi"],["“Experto descubre falla de seguridad global”","iac"]]}
+];
+
+const $ = s => document.querySelector(s);
+let current = "isi"; const hidden = new Set();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function setAccent(c){ const r=document.documentElement.style; r.setProperty("--accent",`var(--${c})`); r.setProperty("--accent-soft",`var(--${c}-soft)`); }
+function buildSwitch(el){
+  el.innerHTML = Object.entries(CARRERAS).map(([k,v])=>`<button role="tab" data-c="${k}" aria-selected="${k===current}">${v.corto}</button>`).join("");
+  el.addEventListener("click", e => { const b=e.target.closest("button"); if(b){ select(b.dataset.c); blip(); } });
+}
+const check = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>`;
+function renderCareer(){
+  const c=CARRERAS[current];
+  $("#careerView").innerHTML = `<div class="career-main"><h3>${c.nombre}</h3><p class="motto">${c.lema}</p>
+    <ul class="facts">${c.datos.map(([a,b])=>`<li>${a}: <b>${b}</b></li>`).join("")}</ul>
+    <ul class="doing">${c.haras.map(h=>`<li>${check}<span>${h}</span></li>`).join("")}</ul></div>
+    <div class="side"><div class="jobs"><h4>Dónde puedes trabajar</h4><ul>${c.trabajos.map(t=>`<li>${t}</li>`).join("")}</ul></div>
+    <div class="hook"><h4>¿Es para ti?</h4><p>${c.gancho}</p><a class="go" href="#malla">Ver su malla</a></div></div>`;
+}
+function renderLegend(){
+  $("#legend").innerHTML = Object.entries(UNIDADES).map(([k,u])=>`<button data-u="${k}" aria-pressed="${!hidden.has(k)}"><i style="background:${u.color}"></i>${u.nombre}</button>`).join("");
+}
+$("#legend").addEventListener("click", e => { const b=e.target.closest("button"); if(!b) return; const u=b.dataset.u; hidden.has(u)?hidden.delete(u):hidden.add(u); renderLegend(); applyFilter(); blip(); });
+function applyFilter(){ document.querySelectorAll(".subj").forEach(s=>s.classList.toggle("dim",hidden.has(s.dataset.u))); }
+
+function renderMalla(){
+  const m=MALLAS[current], c=CARRERAS[current];
+  const tot={b:0,p:0,i:0}; m.flat().forEach(s=>tot[s.u]+=s.h-(s.pl||0)-(s.psc||0));
+  const all=Object.values(tot).reduce((a,b)=>a+b,0);
+  $("#splitBox").innerHTML = `<div class="split">${Object.entries(tot).map(([k,v])=>`<i style="width:${v/all*100}%;background:${UNIDADES[k].color}"></i>`).join("")}</div>
+    <p class="split-l">${Object.entries(tot).map(([k,v])=>`<span>${UNIDADES[k].nombre}: ${v.toLocaleString("es-EC")} h</span>`).join("")}<span>Prácticas: 360 h</span></p>`;
+  $("#prog").max=m.length;
+  $("#periods").innerHTML = m.map((per,i)=>`<div class="period" data-p="${i+1}">
+    <header><b>${i+1}</b><span>periodo · ${per.length} materias</span></header>
+    ${c.hitos[i+1]?`<div class="milestone">★ ${c.hitos[i+1]}</div>`:""}
+    ${per.map((s,j)=>{ const u=UNIDADES[s.u]; const tags=[`${s.h} h`]; if(s.psc) tags.push(`+${s.psc} h comunidad`); if(s.pl) tags.push(`+${s.pl} h prácticas`); if(s.it) tags.push("eliges A o B");
+      return `<button class="subj${s.it?" it":""}" style="--u:${u.color}" data-u="${s.u}" data-i="${i}" data-j="${j}">${esc(s.n)}<small>${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</small></button>`; }).join("")}
+  </div>`).join("");
+  applyFilter(); updateProgress();
+}
+function updateProgress(){
+  const v=+$("#prog").value, total=MALLAS[current].length;
+  document.querySelectorAll(".period").forEach(p=>p.classList.toggle("done",+p.dataset.p<=v));
+  $("#progOut").textContent = v===0?"Inicio":v===total?"¡Ingeniero/a!":`Periodo ${v} de ${total}`;
+}
+let lastV=0;
+$("#prog").addEventListener("input", e => { updateProgress(); const v=+e.target.value; if(v>lastV) blip(v); lastV=v; });
+
+let lastFocus;
+$("#periods").addEventListener("click", e => {
+  const b=e.target.closest(".subj"); if(!b) return;
+  const i=+b.dataset.i, s=MALLAS[current][i][+b.dataset.j], u=UNIDADES[s.u], c=CARRERAS[current];
+  let parts;
+  if(s.u==="i") parts=[["Talleres y tutorías",102,"var(--u-p)"],["Trabajo autónomo",100,"var(--u-b)"],["Práctica y casos",142,"var(--isi)"],["Sustentación o examen",16,"var(--u-i)"]];
+  else { const base=s.h-(s.psc||0)-(s.pl||0); const acd=(current==="isi"&&i>=5)?26:24;
+    const aa=base-acd-28;
+    parts=[["Con tu docente",acd,"var(--u-p)"],["Por tu cuenta",aa,"var(--u-b)"],["Práctica experimental",28,"var(--isi)"]];
+    if(s.psc) parts.push(["Servicio comunitario",s.psc,"var(--iac)"]);
+    if(s.pl) parts.push(["Prácticas laborales",s.pl,"var(--u-i)"]); }
+  const tot=parts.reduce((a,p)=>a+p[1],0);
+  $("#dBody").innerHTML = `<span class="unit" style="--u:${u.color}">${u.nombre}</span>
+    <h3 id="dTitle">${esc(s.n)}</h3><p class="per">${c.nombre} · Periodo ${i+1} · ${s.h} horas</p>
+    <p class="phrase">${esc(s.f)}</p>
+    ${s.it?`<h4>Elige tu ruta</h4><div class="opt"><div><b>A · Informática Aplicada</b><br>${esc(s.it[0])}</div><div><b>B · Robótica y Domótica</b><br>${esc(s.it[1])}</div></div>`:""}
+    ${s.o?`<h4>Temas oficiales</h4><p class="off">${esc(s.o)}</p>`:""}
+    <h4>Cómo se reparten tus ${tot} horas</h4>
+    <div class="hours">${parts.map(p=>`<i style="width:${p[1]/tot*100}%;background:${p[2]}"></i>`).join("")}</div>
+    <div class="hours-l">${parts.map(p=>`<span><i style="background:${p[2]}"></i>${p[0]}: ${p[1]} h</span>`).join("")}</div>`;
+  lastFocus=b; openDrawer(); blip(i+1);
+});
+function openDrawer(){ $("#drawer").classList.add("open"); $("#drawerBg").classList.add("open"); $("#drawer").setAttribute("aria-hidden","false"); $("#dClose").focus(); }
+function closeDrawer(){ $("#drawer").classList.remove("open"); $("#drawerBg").classList.remove("open"); $("#drawer").setAttribute("aria-hidden","true"); lastFocus&&lastFocus.focus(); }
+$("#dClose").onclick=closeDrawer; $("#drawerBg").onclick=closeDrawer;
+document.addEventListener("keydown", e => { if(e.key==="Escape") closeDrawer(); });
+
+function select(c, scroll){
+  current=c; setAccent(c);
+  document.querySelectorAll(".switch button").forEach(b=>b.setAttribute("aria-selected",b.dataset.c===c));
+  renderCareer(); renderMalla(); lastV=0;
+  if(scroll) $("#carreras").scrollIntoView();
+}
+document.querySelectorAll(".path").forEach(p=>p.addEventListener("click",()=>{ select(p.dataset.c,true); blip(); }));
+
+let qi=0, score={isi:0,iac:0};
+function renderQuiz(){
+  const el=$("#quiz");
+  if(qi<QUIZ.length){
+    const q=QUIZ[qi];
+    el.innerHTML=`<p class="step">Pregunta ${qi+1} de ${QUIZ.length}</p><div class="bar"><i style="width:${qi/QUIZ.length*100}%"></i></div><h3>${q.q}</h3>
+      <div class="opts">${q.o.map((o,k)=>`<button data-k="${k}">${o[0]}</button>`).join("")}</div>`;
+    el.querySelectorAll(".opts button").forEach(b=>b.onclick=()=>{ score[q.o[+b.dataset.k][1]]++; qi++; blip(qi); renderQuiz(); });
+  } else {
+    const win=score.isi>=score.iac?"isi":"iac", c=CARRERAS[win], p=Math.round(score.isi/QUIZ.length*100);
+    el.innerHTML=`<div class="result"><p class="step">Tu resultado</p><p class="big" style="color:var(--${win})">${c.nombre}</p><p>${c.gancho}</p>
+      <div class="meter"><i style="width:${p}%"></i><i style="width:${100-p}%"></i></div>
+      <div class="meter-l"><span>Sistemas Inteligentes ${p}%</span><span>IA y Ciberseguridad ${100-p}%</span></div>
+      <div class="btns"><button class="btn main" id="seeMine">Ver la malla de mi carrera</button><button class="btn ghost" id="again">Repetir test</button></div></div>`;
+    $("#seeMine").onclick=()=>{ select(win); $("#malla").scrollIntoView(); };
+    $("#again").onclick=()=>{ qi=0; score={isi:0,iac:0}; renderQuiz(); };
+    fanfare();
+  }
+}
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.2});
+document.querySelectorAll(".reveal").forEach(r=>io.observe(r));
+
+/* ===== Música de fondo original (generada en el navegador con Tone.js) ===== */
+const Music = (() => {
+  let ready=false, on=false, wantOn=true, fx;
+  let pref=null; try{ pref=localStorage.getItem("ube-music"); }catch(_){}
+  if(pref==="off") wantOn=false;
+  function build(){
+    if(typeof Tone==="undefined") return false;
+    const master=new Tone.Volume(-15).toDestination();
+    const rev=new Tone.Reverb({decay:4,wet:.35}).connect(master);
+    const delay=new Tone.FeedbackDelay("8n.",.3).connect(rev);
+    const pad=new Tone.PolySynth(Tone.Synth,{oscillator:{type:"fatsawtooth",count:3,spread:30},envelope:{attack:1.2,release:2.5}}).connect(new Tone.Filter(900,"lowpass").connect(rev));
+    pad.volume.value=-14;
+    const arp=new Tone.Synth({oscillator:{type:"triangle"},envelope:{attack:.005,decay:.15,sustain:.1,release:.3}}).connect(delay);
+    arp.volume.value=-10;
+    const bass=new Tone.MonoSynth({oscillator:{type:"square"},filter:{Q:2},filterEnvelope:{baseFrequency:120,octaves:2.5},envelope:{attack:.01,release:.3}}).connect(master);
+    bass.volume.value=-12;
+    const kick=new Tone.MembraneSynth({octaves:4}).connect(master); kick.volume.value=-8;
+    const hat=new Tone.NoiseSynth({noise:{type:"white"},envelope:{attack:.001,decay:.05,sustain:0}}).connect(new Tone.Filter(7000,"highpass").connect(master)); hat.volume.value=-26;
+    fx=new Tone.Synth({oscillator:{type:"sine"},envelope:{attack:.005,decay:.2,sustain:0,release:.2}}).connect(rev); fx.volume.value=-12;
+    const prog=[["A3","C4","E4"],["F3","A3","C4"],["C4","E4","G4"],["G3","B3","D4"]];
+    const roots=["A1","F1","C2","G1"];
+    const arps=[["A4","C5","E5","A5"],["F4","A4","C5","F5"],["C5","E5","G5","C6"],["G4","B4","D5","G5"]];
+    Tone.Transport.bpm.value=100;
+    new Tone.Loop(t=>{ const bar=Math.floor(Tone.Transport.ticks/(Tone.Transport.PPQ*4))%4; pad.triggerAttackRelease(prog[bar],"1m",t); },"1m").start(0);
+    let step=0;
+    new Tone.Loop(t=>{ const bar=Math.floor(Tone.Transport.ticks/(Tone.Transport.PPQ*4))%4; const a=arps[bar]; arp.triggerAttackRelease(a[[0,1,2,3,2,1,3,2][step%8]],"16n",t); if(step%8===0||step%8===3||step%8===6) bass.triggerAttackRelease(roots[bar],"8n",t); step++; },"8n").start(0);
+    new Tone.Loop(t=>kick.triggerAttackRelease("C1","8n",t),"4n").start(0);
+    new Tone.Loop(t=>hat.triggerAttackRelease("16n",t),"8n").start("8n");
+    return true;
+  }
+  async function start(){
+    try{ await Tone.start(); if(!ready){ ready=build(); if(!ready) return; } Tone.Transport.start(); on=true; ui(); }catch(_){}
+  }
+  function stop(){ if(ready) Tone.Transport.pause(); on=false; ui(); }
+  function ui(){ const b=$("#musicBtn"); b.classList.toggle("on",on); b.setAttribute("aria-pressed",on); b.querySelector(".lbl").textContent=on?"Pausar música":"Música"; }
+  function toggle(){ wantOn=!on; try{ localStorage.setItem("ube-music",wantOn?"on":"off"); }catch(_){} on?stop():start(); }
+  function note(n){ if(on&&fx) fx.triggerAttackRelease(n,"16n"); }
+  return {start,toggle,note,get on(){return on},get wantOn(){return wantOn}};
+})();
+const SCALE=["A4","C5","D5","E5","G5","A5","C6","D6","E6"];
+function blip(n){ Music.note(SCALE[(n||0)%SCALE.length]); }
+function fanfare(){ ["A4","C5","E5","A5"].forEach((n,k)=>setTimeout(()=>Music.note(n),k*110)); }
+$("#musicBtn").addEventListener("click", e => { e.stopPropagation(); hideToast(); Music.toggle(); });
+function hideToast(){ $("#toast").classList.remove("show"); }
+if(Music.wantOn){
+  setTimeout(()=>$("#toast").classList.add("show"),1200);
+  const first=()=>{ hideToast(); if(Music.wantOn&&!Music.on) Music.start(); removeEventListener("pointerdown",first); removeEventListener("keydown",first); };
+  addEventListener("pointerdown",first); addEventListener("keydown",first);
+}
+
+/* ===== Red neuronal del hero ===== */
+(function(){
+  const cv=$("#net"), ctx=cv.getContext("2d"), reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W,H,pts=[],mouse={x:-999,y:-999}; const dpr=Math.min(devicePixelRatio||1,2), cols=["#34C6EA","#FF5C86","#FFC83A"];
+  function size(){ W=cv.clientWidth; H=cv.clientHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const n=Math.min(90,Math.floor(W*H/14000)); pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,c:cols[Math.random()*3|0],r:Math.random()*2+1.2})); }
+  function draw(){ ctx.clearRect(0,0,W,H);
+    for(let i=0;i<pts.length;i++){ const a=pts[i];
+      for(let j=i+1;j<pts.length;j++){ const b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=dx*dx+dy*dy; if(d<16000){ ctx.strokeStyle=`rgba(169,182,214,${.22*(1-d/16000)})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); } }
+      const mx=a.x-mouse.x,my=a.y-mouse.y,md=mx*mx+my*my; if(md<30000){ ctx.strokeStyle=`rgba(255,200,58,${.5*(1-md/30000)})`; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke(); }
+      ctx.fillStyle=a.c; ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,7); ctx.fill(); } }
+  function step(){ pts.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1; }); draw(); requestAnimationFrame(step); }
+  addEventListener("resize",()=>{ size(); if(reduce) draw(); });
+  cv.parentElement.addEventListener("pointermove",e=>{ const r=cv.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; if(reduce) draw(); });
+  cv.parentElement.addEventListener("pointerleave",()=>{ mouse.x=mouse.y=-999; });
+  size(); reduce?draw():step();
+})();
+
+/* Enlaces internos: desplazamiento manual (funciona también dentro del iframe de Streamlit) */
+document.addEventListener("click", e => {
+  const a=e.target.closest('a[href^="#"]'); if(!a) return;
+  const id=a.getAttribute("href").slice(1), el=id&&document.getElementById(id);
+  if(el){ e.preventDefault(); el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); }
+});
+buildSwitch($("#switch1")); buildSwitch($("#switch2")); renderLegend(); renderQuiz();
+const h=(location.hash||"").slice(1); select(CARRERAS[h]?h:"isi");
+</script>
+</body>
+</html>

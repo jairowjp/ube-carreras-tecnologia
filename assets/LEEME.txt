@@ -1,0 +1,4 @@
+Coloca aquí el logo de la UBE con uno de estos nombres:
+logo.png, logo.svg, logo.jpg o logo.webp
+(preferible fondo transparente y versión clara, porque la cabecera es azul oscuro).
+La app lo inserta automáticamente en la cabecera.
