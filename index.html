@@ -464,7 +464,7 @@ const Music = (() => {
   let ready=false, on=false, wantOn=true, fx, master, voiceStart, gen=0;
   /* Locución completa, en fragmentos para que Chrome no la corte */
   const FRASES=["Bienvenidos a la Universidad Bolivariana del Ecuador.","Estudia las carreras de Ingeniería en Sistemas Inteligentes o Ingeniería en Inteligencia Artificial y Ciberseguridad.","Crea con seguridad."];
-  const PAUSA_MS=3000; /* silencio entre repeticiones */
+  const CICLO_MS=80000; /* la locución empieza cada 80 segundos */
   const FEM=/elvira|helena|laura|m[oó]nica|marisol|luc[ií]a|paloma|conchita|carmen|elena|ximena|google espa[nñ]ol$|female|mujer/i;
   const MASC=/pablo|[aá]lvaro|jorge|diego|ra[uú]l|enrique|carlos|juan|antonio/i;
   const hasVoice="speechSynthesis" in window;
@@ -484,7 +484,7 @@ const Music = (() => {
   /* Repite la locución sin parar mientras la música esté encendida */
   function speak(){
     if(!on||!hasVoice) return;
-    const g=++gen;
+    const g=++gen, t0=Date.now();
     speechSynthesis.cancel();
     const v=pickVoice();
     duck(-28,.4);
@@ -493,7 +493,7 @@ const Music = (() => {
       u.lang=v?v.lang:"es-ES"; if(v) u.voice=v;
       u.rate=.95; u.pitch=1.08; u.volume=1;
       if(k===FRASES.length-1){
-        u.onend=u.onerror=()=>{ if(g!==gen) return; duck(-15,1.2); if(on) voiceStart=setTimeout(speak,PAUSA_MS); };
+        u.onend=u.onerror=()=>{ if(g!==gen) return; duck(-15,1.2); if(on) voiceStart=setTimeout(speak,Math.max(1000,CICLO_MS-(Date.now()-t0))); };
       }
       speechSynthesis.speak(u);
     });
